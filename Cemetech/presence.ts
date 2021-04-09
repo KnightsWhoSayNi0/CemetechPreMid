@@ -125,6 +125,17 @@ presence.on("UpdateData", async () => {
     presenceData.startTimestamp = browsingStamp;
     presenceData.details = "Viewing Who's Online";
     presenceData.state = "";
+  } else if (document.location.pathname == "/news/") {
+    presenceData.startTimestamp = browsingStamp;
+    presenceData.details = "Viewing News Index";
+    presenceData.state = "";
+  } else if (document.location.pathname.includes("/news/")) {
+    presenceData.startTimestamp = browsingStamp;
+    presenceData.details = "Viewing News";
+    title = document.querySelector(
+      "#page_content_parent > div.mainheadmiddle"
+    );
+    presenceData.state = title.innerText;
   }
 
   if (presenceData.details == null) {
