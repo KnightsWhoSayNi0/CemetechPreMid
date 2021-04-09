@@ -28,6 +28,12 @@ presence.on("UpdateData", async () => {
         title = document.querySelector("#page_content_parent > div.mainheadmiddle.roundedtop > a");
         presenceData.state = title.innerText;
     }
+    else if (document.location.pathname.includes("/forum/viewforum")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Forum:";
+        title = document.querySelector("#page_content_parent > div.mainheadmiddle.roundedtop > a");
+        presenceData.state = title.innerText;
+    }
     else if (document.location.pathname == "/sc/") {
         presenceData.startTimestamp = browsingStamp;
         presenceData.details = "Using SourceCoder3";
@@ -57,9 +63,71 @@ presence.on("UpdateData", async () => {
     }
     else if (document.location.pathname.includes("/downloads/files")) {
         presenceData.startTimestamp = browsingStamp;
-        presenceData.details = "Viewing File";
+        presenceData.details = "Viewing File:";
         title = document.querySelector("#page_content_parent > div > div.mainheadmiddle.roundedtop > span");
         presenceData.state = title.innerText;
+    }
+    else if (document.location.pathname.includes("/downloads/users")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing User Archive of:";
+        presenceData.state = document.location.pathname.substring(document.location.pathname.lastIndexOf("/forum/profile"));
+    }
+    else if (document.location.pathname.includes("/forum/profile")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Profile:";
+        title = document.querySelector("#page_content_parent > div.mainbody > div > div.profile_cols > div.profile_brief > span:nth-child(2)");
+        presenceData.state = title.innerText;
+    }
+    else if (document.location.pathname == "/forum/memberlist.php") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Member List";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/forum/memberlist.php") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Member List";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/resources/") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Resources";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/play/") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Playing!";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/play/mcmap/") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing MC Dynmap";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/about/") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing About Page";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname.includes("/forum/privmsg")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Messages";
+        presenceData.state = "";
+    }
+    else if (document.location.pathname == "/tools/") {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Tools";
+        presenceData.state = "how did i get here?";
+    }
+    else if (document.location.pathname.includes("/tools/")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Tools";
+        title = document.querySelector("#page_content_parent > div.mainheadmiddle.roundedtop");
+        presenceData.state = title.innerText;
+    }
+    else if (document.location.pathname.includes("/forum/viewonline")) {
+        presenceData.startTimestamp = browsingStamp;
+        presenceData.details = "Viewing Who's Online";
+        presenceData.state = "";
     }
     if (presenceData.details == null) {
         presence.setTrayTitle();
